@@ -30,21 +30,61 @@ class Board(object):
             for now it only prints the board and returs empty string.
             to be reimplemented!
         """
-        reprs = { 0: '.',
-                  1:'W',
-                 -1:'b' }
-        print '\nCURRENT BOARD: '
-        for x in range(30):
-            if x % 10 == 0:
-                print '\n'
-            field = reprs[self.board[x]]
-            if x in [25,27,28] and self.board[x] == 0:
-                field = '*'
-            if x == 26:
-                field = '~'
-            print  '   ', field,
-        print '\n'
-        return ''
+        reprs = {-1:'b',
+                  0: '_',
+                  1:'W'}
+        special = {15:'*',
+                  25:'!',
+                  26:'~',
+                  27:'!',
+                  28:'!'}
+                  
+
+        
+                    
+        line = '_' * 41
+        upper = '|' + '   |'*10
+        lower = '%s%s_|'
+        bottom = '|' + '___|' * 10
+
+        a = '|'
+        b = '|'
+        c = '|'
+       
+        for x in range(10):
+            a += lower %('_',reprs[self.board[x]])
+        for x in range(19,9, -1):
+            frmt = reprs[self.board[x]]
+            if self.board != 0:
+                frmt = '_', frmt
+            else:
+                if x not in special:
+                    frmt = '_', frmt
+                else:
+                    frmt = special[x], frmt
+            b += lower %(frmt) 
+        for x in range(20,30):
+            frmt = reprs[self.board[x]]
+            if self.board != 0:
+                frmt = '_', frmt
+            else:
+                if x not in special:
+                    frmt = '_', frmt
+                else:
+                    frmt = special[x], frmt
+            c += lower %(frmt)
+
+        pattern = '\n  ' + '\n  '.join([
+            '   '.join([str(x) for x in range(10)]),
+            '  '.join([str(x) for x in range(19,9,-1)]),
+            '  '.join([str(x) for x in range(20,30)])
+            ]) + '\n'
+
+        
+        return '\n'.join([line, upper, a, upper, b, upper, c, pattern])
+
+
+    
    
     def __getitem__(self, n):
         """ return field n """
@@ -53,4 +93,5 @@ class Board(object):
     def __setitem__(self, n, v):
         """ change field n on a current board into a v value """
         self.board[n] = v
+
 

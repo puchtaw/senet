@@ -34,7 +34,7 @@ class GameOfSenet(object):
         """ handle the game """
 
         # if 1 was thrown player has additional move:
-        self.to_play = self.to_play if self.throw == 1 else -self.to_play
+        self.to_play = self.to_play if self.throw in [1,4,5] else -self.to_play
         player = self.players[self.to_play]
 
         # throw sticks:
@@ -52,7 +52,10 @@ class GameOfSenet(object):
 
     def sticks(self):
         """ simulate throw of sticks """
-        self.throw = randrange(1,6)      
+        face_up = 0
+        for x in range(4):
+            face_up +=1 if randrange(2)==0 else 0
+        self.throw = 5 if face_up == 0 else face_up
 
     def game_in_play(self):
         """ if game is over return False """

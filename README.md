@@ -1,0 +1,2 @@
+# senet
+Game of Senet

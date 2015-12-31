@@ -3,7 +3,7 @@ from player import Player
 from rules import *
 from random import randrange
 
-b = Board.Instance()
+b = Board()
 white = Player("white", 1, b)
 black = Player("black",-1, b)
 rules = Kendall(b)

@@ -2,7 +2,7 @@ from random import randrange
 from utilities import Singleton
 
 
-@Singleton
+#@Singleton
 class Board(object):
     """ board representation. it is a list-like object
         __repr__ needs to be implemented, so that
@@ -21,6 +21,7 @@ class Board(object):
         methods __getslice__ and __setslice__ should be implemented
         
         """
+
     def __init__(self):
         self.board = []
         self.finished = []
@@ -38,10 +39,7 @@ class Board(object):
                   26:'~',
                   27:'!',
                   28:'!'}
-                  
 
-        
-                    
         line = '_' * 41
         upper = '|' + '   |'*10
         lower = '%s%s_|'
@@ -80,12 +78,8 @@ class Board(object):
             '  '.join([str(x) for x in range(20,30)])
             ]) + '\n'
 
-        
         return '\n'.join([line, upper, a, upper, b, upper, c, pattern])
 
-
-    
-   
     def __getitem__(self, n):
         """ return field n """
         return self.board[n]
@@ -93,5 +87,4 @@ class Board(object):
     def __setitem__(self, n, v):
         """ change field n on a current board into a v value """
         self.board[n] = v
-
 

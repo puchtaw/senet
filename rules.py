@@ -1,12 +1,17 @@
 
-
-
-
 class Bell(object):
     """ set of Senet rules by R. C. Bell """
     def __init__(self):
         pass
 
+    def make_move(self):
+        pass
+
+    def get_legal_moves(self):
+	pass
+
+    def is_legal(self):
+	pass
 
 
 class Kendall(object):
@@ -37,7 +42,6 @@ class Kendall(object):
         
         self.b[start], self.b[end] = self.b[end], self.b[start]            
         
-
     def is_safe(self, pawn):
         """ return True if pawn is on 26th, 28th or 29th field """
         return True if pawn in [25,27,28] else False
